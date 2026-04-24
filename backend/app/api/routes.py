@@ -56,8 +56,8 @@ async def validate(
     }
 
 @router.get("/batches")
-def get_batches(db: Session = Depends(get_db)):
-    return db.query(Batch).all()
+def get_batches(db: Session = Depends(get_db), user_id: int = Depends(get_current_user_id)):
+    return db.query(Batch).filter(Batch.user_id == user_id).all()
 
 
 @router.get("/batch/{batch_id}")
