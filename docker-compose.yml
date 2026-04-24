@@ -32,7 +32,7 @@ services:
       - backend_data:/app/uploads
       - backend_data:/app/reports
     ports:
-      - "8000:8000"
+      - "3433:8000"
     depends_on:
       - postgres
       - redis
@@ -67,9 +67,10 @@ services:
       dockerfile: Dockerfile
     container_name: vkr_frontend
     ports:
-      - "5173:5173"
+      - "3434:5173"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     command: npm run dev -- --host
     depends_on:
       - backend
